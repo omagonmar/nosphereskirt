@@ -94,6 +94,8 @@
 #include "MultiFrameInstrument.hpp"
 #include "NestedLogWavelengthGrid.hpp"
 #include "NetzerAccretionDiskGeometry.hpp"
+#include "NoSpherePolarizedGraphiteGrainComposition.hpp"
+#include "NoSpherePolarizedSilicateGrainComposition.hpp"
 #include "OctTreeDustGrid.hpp"
 #include "OffsetGeometryDecorator.hpp"
 #include "OligoDustSystem.hpp"
@@ -413,6 +415,8 @@ SimulationItemRegistry::SimulationItemRegistry(string version, string format)
     ItemRegistry::add<AmHydrocarbonGrainComposition>();
     ItemRegistry::add<EnstatiteGrainComposition>();
     ItemRegistry::add<ForsteriteGrainComposition>();
+    ItemRegistry::add<NoSpherePolarizedGraphiteGrainComposition>();
+    ItemRegistry::add<NoSpherePolarizedSilicateGrainComposition>();
     ItemRegistry::add<PolarizedGraphiteGrainComposition>();
     ItemRegistry::add<PolarizedSilicateGrainComposition>();
     ItemRegistry::add<TrustGraphiteGrainComposition>();
