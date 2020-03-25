@@ -18,7 +18,7 @@
 class NoSpherePolarizedGraphiteGrainComposition : public GrainComposition
 {
     ITEM_CONCRETE(NoSpherePolarizedGraphiteGrainComposition, GrainComposition,
-                  "a graphite dust grain composition with support for polarization")
+                  "a graphite dust grain composition with support for polarization with no-spherical particles")
     ITEM_END()
 
     //============= Construction - Setup - Destruction =============

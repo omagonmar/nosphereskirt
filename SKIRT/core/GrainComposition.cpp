@@ -525,6 +525,8 @@ void GrainComposition::loadPolarizedOpticalGrid(bool resource, string name)
     _S12vvv.resize(_Nlambda,_Na,_Ntheta);
     _S33vvv.resize(_Nlambda,_Na,_Ntheta);
     _S34vvv.resize(_Nlambda,_Na,_Ntheta);
+    _S22vvv.resize(_Nlambda,_Na,_Ntheta);
+    _S44vvv.resize(_Nlambda,_Na,_Ntheta);
 
     // read the data
     for (int i=0; i<_Na; i++)
@@ -546,7 +548,7 @@ void GrainComposition::loadPolarizedOpticalGrid(bool resource, string name)
             for (int d=0; d<=_Ntheta-1; d++)
             {
                 double theta;
-                file >> theta >> _S11vvv(k,i,d) >> _S12vvv(k,i,d) >> _S33vvv(k,i,d) >> _S34vvv(k,i,d);
+                file >> theta >> _S11vvv(k,i,d) >> _S12vvv(k,i,d) >> _S33vvv(k,i,d) >> _S34vvv(k,i,d) >> _S22vvv(k,i,d) >> _S44vvv(k,i,d);
                 getline(file,line);
             }
         }
