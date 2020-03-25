@@ -247,6 +247,8 @@ private:
     Table<3> _S12vvv;       // indexed on k, i and d
     Table<3> _S33vvv;       // indexed on k, i and d
     Table<3> _S34vvv;       // indexed on k, i and d
+    Table<3> _S22vvv;       // indexed on k, i and d
+    Table<3> _S44vvv;       // indexed on k, i and d
 };
 
 ////////////////////////////////////////////////////////////////////
