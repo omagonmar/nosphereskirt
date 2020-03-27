@@ -3,8 +3,8 @@
 ////       © Astronomical Observatory, Ghent University         ////
 ///////////////////////////////////////////////////////////////// */
 
-#ifndef POLARIZEDGRAPHITEGRAINCOMPOSITION_HPP
-#define POLARIZEDGRAPHITEGRAINCOMPOSITION_HPP
+#ifndef NOSPHEREPOLARIZEDGRAPHITEGRAINCOMPOSITION_HPP
+#define NOSPHEREPOLARIZEDGRAPHITEGRAINCOMPOSITION_HPP
 
 #include "GrainComposition.hpp"
 
