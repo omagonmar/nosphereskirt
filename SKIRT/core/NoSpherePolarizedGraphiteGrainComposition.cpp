@@ -19,7 +19,7 @@ void NoSpherePolarizedGraphiteGrainComposition::setupSelfBefore()
 
 //////////////////////////////////////////////////////////////////////
 
-string PolarizedGraphiteGrainComposition::name() const
+string NoSpherePolarizedGraphiteGrainComposition::name() const
 {
     return "NoSphere_Polarized_Draine_Graphite";
 }
