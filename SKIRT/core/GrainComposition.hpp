@@ -96,7 +96,7 @@ public:
         \f$\theta\f$. It uses log-linear interpolation on the internally stored values. If either
         of the specified values lie outside of the internally defined grid, the value at the
         nearest border is used instead. */
-    void Sxx(double lambda, double a, double theta, double& S11, double& S12, double& S33, double& S34) const;
+    void Sxx(double lambda, double a, double theta, double& S11, double& S12, double& S33, double& S34, double& S22, double& S44) const;
 
     //========= Setup Functions for Use in Subclasses ========
 

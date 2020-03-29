@@ -175,7 +175,7 @@ namespace
 ////////////////////////////////////////////////////////////////////
 
 void GrainComposition::Sxx(double lambda, double a, double theta,
-                           double& S11, double& S12, double& S33, double& S34) const
+                           double& S11, double& S12, double& S33, double& S34, double& S22, double& S44) const
 {
     int k, i;
     indices(lambda, a, k, i);
@@ -190,6 +190,10 @@ void GrainComposition::Sxx(double lambda, double a, double theta,
                        _S33vvv(k,i,d), _S33vvv(k+1,i,d), _S33vvv(k,i+1,d), _S33vvv(k+1,i+1,d),  false);
     S34 = interpolate(lambda, _lambdav[k], _lambdav[k+1],  a, _av[i], _av[i+1],
                        _S34vvv(k,i,d), _S34vvv(k+1,i,d), _S34vvv(k,i+1,d), _S34vvv(k+1,i+1,d),  false);
+    S22 = interpolate(lambda, _lambdav[k], _lambdav[k+1],  a, _av[i], _av[i+1],
+                       _S22vvv(k,i,d), _S22vvv(k+1,i,d), _S22vvv(k,i+1,d), _S22vvv(k+1,i+1,d),  false);
+    S44 = interpolate(lambda, _lambdav[k], _lambdav[k+1],  a, _av[i], _av[i+1],
+                       _S44vvv(k,i,d), _S44vvv(k+1,i,d), _S44vvv(k,i+1,d), _S44vvv(k+1,i+1,d),  false);
 }
 
 ////////////////////////////////////////////////////////////////////

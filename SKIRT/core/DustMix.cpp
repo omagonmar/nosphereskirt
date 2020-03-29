@@ -351,6 +351,50 @@ void DustMix::addPolarization(const Table<2>& S11vv, const Table<2>& S12vv,
 
 //////////////////////////////////////////////////////////////////////
 
+void DustMix::addPolarizationNoSphere(const Table<2>& S11vv, const Table<2>& S12vv,
+                              const Table<2>& S33vv, const Table<2>& S34vv, const Table<2>& S22vv, const Table<2>& S44vv)
+{
+    // in the first invocation of this function, remember the number of theta samples, and resize our tables
+    if (!_polarization)
+    {
+        _polarization = true;
+        _Ntheta = S11vv.size(1);
+        _S11vv.resize(_Nlambda,_Ntheta);
+        _S12vv.resize(_Nlambda,_Ntheta);
+        _S33vv.resize(_Nlambda,_Ntheta);
+        _S34vv.resize(_Nlambda,_Ntheta);
+        _S22vv.resize(_Nlambda,_Ntheta);
+        _S44vv.resize(_Nlambda,_Ntheta);
+    }
+
+    // verify the incoming table sizes
+    if (S11vv.size(0)!=static_cast<size_t>(_Nlambda) || S12vv.size(0)!=static_cast<size_t>(_Nlambda) ||
+        S33vv.size(0)!=static_cast<size_t>(_Nlambda) || S34vv.size(0)!=static_cast<size_t>(_Nlambda) ||
+        S22vv.size(0)!=static_cast<size_t>(_Nlambda) || S44vv.size(0)!=static_cast<size_t>(_Nlambda) ||
+        S11vv.size(1)!=static_cast<size_t>(_Ntheta) || S12vv.size(1)!=static_cast<size_t>(_Ntheta) ||
+        S33vv.size(1)!=static_cast<size_t>(_Ntheta) || S34vv.size(1)!=static_cast<size_t>(_Ntheta) )
+        S22vv.size(1)!=static_cast<size_t>(_Ntheta) || S44vv.size(1)!=static_cast<size_t>(_Ntheta) )
+    {
+        throw FATALERROR("Mueller tables must have same size as simulation's lambda grid");
+    }
+
+    // accumulate the incoming Mueller coefficients into our tables
+    for (int ell=0; ell<_Nlambda; ell++)
+    {
+        for (int t=0; t<_Ntheta; t++)
+        {
+            _S11vv(ell,t) += S11vv(ell,t);
+            _S12vv(ell,t) += S12vv(ell,t);
+            _S33vv(ell,t) += S33vv(ell,t);
+            _S34vv(ell,t) += S34vv(ell,t);
+            _S22vv(ell,t) += S22vv(ell,t);
+            _S44vv(ell,t) += S44vv(ell,t);
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////////////
+
 int DustMix::numPopulations() const
 {
     return _Npop;
@@ -547,7 +591,7 @@ Direction DustMix::scatteringDirectionAndPolarization(StokesVector* out, const P
 
         // apply Mueller matrix
         int t = indexForTheta(theta, _Ntheta);
-        out->applyMueller(_S11vv(ell,t), _S12vv(ell,t), _S33vv(ell,t), _S34vv(ell,t));
+        out->applyMueller(_S11vv(ell,t), _S12vv(ell,t), _S33vv(ell,t), _S34vv(ell,t), _S22vv(ell,t), _S44vv(ell,t));
 
         // rotate the propagation direction in the scattering plane
         Vec newdir = pp->direction()*cos(theta) + Vec::cross(out->normal(), pp->direction())*sin(theta);
@@ -582,7 +626,7 @@ void DustMix::scatteringPeelOffPolarization(StokesVector* out, const PhotonPacka
         double theta = acos(Vec::dot(pp->direction(),bfknew));
         int t = indexForTheta(theta, _Ntheta);
         int ell = pp->ell();
-        out->applyMueller(_S11vv(ell,t), _S12vv(ell,t), _S33vv(ell,t), _S34vv(ell,t));
+        out->applyMueller(_S11vv(ell,t), _S12vv(ell,t), _S33vv(ell,t), _S34vv(ell,t), _S22vv(ell,t), _S44vv(ell,t));
 
         // rotate the Stokes vector reference direction parallel to the instrument frame y-axis
         // it is given bfknew, because the photon is at this point aimed towards the observer,

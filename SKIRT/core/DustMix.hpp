@@ -175,6 +175,18 @@ protected:
         instance. */
     void addPolarization(const Table<2>& S11vv, const Table<2>& S12vv, const Table<2>& S33vv, const Table<2>& S34vv);
 
+    /** This function, for use in a subclass, adds polarization properties for a single dust
+        population to the dust mix. The arguments provide the four Mueller matrix coefficients
+        \f$S_{11}(\lambda,\theta), S_{12}(\lambda,\theta), S_{33}(\lambda,\theta),
+        S_{34}(\lambda,\theta), S_{22}(\lambda,\theta), S_{44}(\lambda,\theta)\f$ of dust grains 
+        in the population, sampled at the simulation's wavelength grid \f$\lambda_\ell\f$ and 
+        for a set of scattering angles \f$\theta_\mathrm{t}\f$. The four tables must have the 
+        same size. The size of the first dimension (\f$\lambda\f$) must match the number of 
+        wavelengths in the simulation's wavelength grid. The size of the second dimension 
+        (\f$\theta\f$) can be chosen by the caller but must be the same for all invocations 
+        of this function on a particular dust mix instance. */
+    void addPolarizationNoSphere(const Table<2>& S11vv, const Table<2>& S12vv, const Table<2>& S33vv, const Table<2>& S34vv, const Table<2>& S22vv, const Table<2>& S44vv);
+
     //======== Getters for Fundamental and Derived Properties =======
 
 public:

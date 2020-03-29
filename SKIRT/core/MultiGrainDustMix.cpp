@@ -157,6 +157,8 @@ void MultiGrainDustMix::addPopulations(const GrainComposition *gc, const GrainSi
             Table<2> S12vv(Nlambda,Ntheta);
             Table<2> S33vv(Nlambda,Ntheta);
             Table<2> S34vv(Nlambda,Ntheta);
+            Table<2> S22vv(Nlambda,Ntheta);
+            Table<2> S44vv(Nlambda,Ntheta);
             for (int ell=0; ell<Nlambda; ell++)
             {
                 double lambda = lambdav[ell];
@@ -166,16 +168,18 @@ void MultiGrainDustMix::addPopulations(const GrainComposition *gc, const GrainSi
                     for (int i=0; i<Na; i++)
                     {
                         double w = weightv[i] * dndav[i] * dav[i];
-                        double S11, S12, S33, S34;
-                        gc->Sxx(lambda, av[i], theta, S11, S12, S33, S34);
+                        double S11, S12, S33, S34, S22, S44;
+                        gc->Sxx(lambda, av[i], theta, S11, S12, S33, S34, S22, S44);
                         S11vv(ell,t) += w * S11;
                         S12vv(ell,t) += w * S12;
                         S33vv(ell,t) += w * S33;
                         S34vv(ell,t) += w * S34;
+                        S22vv(ell,t) += w * S22;
+                        S44vv(ell,t) += w * S44;
                     }
                 }
             }
-            addPolarization(S11vv, S12vv, S33vv, S34vv);
+            addPolarizationNoSphere(S11vv, S12vv, S33vv, S34vv, S22vv, S44vv);
         }
     }
 }

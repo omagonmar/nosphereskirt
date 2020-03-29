@@ -89,7 +89,7 @@ public:
     /** This function transforms the polarization state described by this Stokes vector by applying
         the Mueller matrix with the specified coefficients (and zero elements elsewhere) to its
         existing state. */
-    void applyMueller(double S11, double S12, double S33, double S34);
+    void applyMueller(double S11, double S12, double S33, double S34, double S22, double S44);
 
 private:
     bool _polarized;
