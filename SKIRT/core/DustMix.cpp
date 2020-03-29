@@ -372,7 +372,7 @@ void DustMix::addPolarizationNoSphere(const Table<2>& S11vv, const Table<2>& S12
         S33vv.size(0)!=static_cast<size_t>(_Nlambda) || S34vv.size(0)!=static_cast<size_t>(_Nlambda) ||
         S22vv.size(0)!=static_cast<size_t>(_Nlambda) || S44vv.size(0)!=static_cast<size_t>(_Nlambda) ||
         S11vv.size(1)!=static_cast<size_t>(_Ntheta) || S12vv.size(1)!=static_cast<size_t>(_Ntheta) ||
-        S33vv.size(1)!=static_cast<size_t>(_Ntheta) || S34vv.size(1)!=static_cast<size_t>(_Ntheta) )
+        S33vv.size(1)!=static_cast<size_t>(_Ntheta) || S34vv.size(1)!=static_cast<size_t>(_Ntheta) ||
         S22vv.size(1)!=static_cast<size_t>(_Ntheta) || S44vv.size(1)!=static_cast<size_t>(_Ntheta) )
     {
         throw FATALERROR("Mueller tables must have same size as simulation's lambda grid");
