@@ -351,8 +351,8 @@ void DustMix::addPolarization(const Table<2>& S11vv, const Table<2>& S12vv,
 
 //////////////////////////////////////////////////////////////////////
 
-void DustMix::addPolarizationNoSphere(const Table<3>& S11vv, const Table<3>& S12vv,
-                              const Table<3>& S33vv, const Table<3>& S34vv, const Table<3>& S22vv, const Table<3>& S44vv)
+void DustMix::addPolarizationNoSphere(const Table<2>& S11vv, const Table<2>& S12vv,
+                              const Table<2>& S33vv, const Table<2>& S34vv, const Table<2>& S22vv, const Table<2>& S44vv)
 {
     // in the first invocation of this function, remember the number of theta samples, and resize our tables
     if (!_polarization)
