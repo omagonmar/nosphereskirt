@@ -185,7 +185,7 @@ protected:
         wavelengths in the simulation's wavelength grid. The size of the second dimension 
         (\f$\theta\f$) can be chosen by the caller but must be the same for all invocations 
         of this function on a particular dust mix instance. */
-    void addPolarizationNoSphere(const Table<3>& S11vv, const Table<3>& S12vv, const Table<3>& S33vv, const Table<3>& S34vv, const Table<3>& S22vv, const Table<3>& S44vv);
+    void addPolarizationNoSphere(const Table<2>& S11vv, const Table<2>& S12vv, const Table<2>& S33vv, const Table<2>& S34vv, const Table<2>& S22vv, const Table<2>& S44vv);
 
     //======== Getters for Fundamental and Derived Properties =======
 
@@ -395,12 +395,8 @@ private:
     Table<2> _S12vv;                // indexed on ell and t
     Table<2> _S33vv;                // indexed on ell and t
     Table<2> _S34vv;                // indexed on ell and t
-    Table<3> _S11vv;                // indexed on ell and t
-    Table<3> _S12vv;                // indexed on ell and t
-    Table<3> _S33vv;                // indexed on ell and t
-    Table<3> _S34vv;                // indexed on ell and t
-    Table<3> _S22vv;                // indexed on ell and t
-    Table<3> _S44vv;                // indexed on ell and t
+    Table<2> _S22vv;                // indexed on ell and t
+    Table<2> _S44vv;                // indexed on ell and t
     Array _thetav;                  // indexed on t
     ArrayTable<2> _thetaXvv;        // indexed on ell and t
     Array _pfnormv;                 // indexed on ell
